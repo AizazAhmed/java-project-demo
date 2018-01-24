@@ -25,10 +25,10 @@
 	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.springframework.boot</groupId>-->
+			<!--<artifactId>spring-boot-starter-data-jpa</artifactId>-->
+		<!--</dependency>-->
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
@@ -64,6 +64,19 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-core</artifactId>
+				<configuration>
+					<url>jdbc:mysql://localhost:3306?useSSL=false</url>
+					<user>root</user>
+					<password>admin</password>
+					<schemas>aizazdb</schemas>
+					<locations>"filesystem:${projectDir}/../migrations/common", "filesystem:${projectDir}/../migrations/mysql"</locations>
+					<baselineOnMigrate>true</baselineOnMigrate>
+					<outOfOrder>true</outOfOrder>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
